@@ -1,0 +1,100 @@
+<div class="card my-5">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <h3 class="mb-0">
+        {{ titulo }}
+        <!--Interpolacion
+          sirve para enviar datos desde el .ts hacia el html
+          -->
+      </h3>
+    </div>
+    <form [formGroup]="frm_Reserva" (ngSubmit)="grabar()">
+      <div class="row">
+        <!-- <div class="form-group mb-3">
+          <label class="form-label" for="turista_id">turista_id</label>
+          <input formControlName="turista_id" type="text" class="form-control" id="turista_id" placeholder="Ingrese la turista_id turista_id" />
+          <div *ngIf="frm_Reserva.get('turista_id').invalid && frm_Reserva.get('turista_id').touched">
+            <small *ngIf="frm_Reserva.get('turista_id').hasError('required')" style="color: red">La cedula es requerida</small>
+          </div>
+        </div> -->
+        <div class="form-group mb-3">
+          <div class="col-lg-6">
+            <div class="form-group mb-3 w-100">
+              <label for="turista_id" class="form-label">Turista</label>
+              <select 
+                class="form-select" 
+                id="turista_id" 
+                name="turista_id" 
+                formControlName="turista_id"
+                required>
+                <option *ngFor="let turista of turistas" [value]="turista.turista_id">{{ turista.nombre }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <div class="col-lg-6">
+            <div class="form-group mb-3 w-100">
+              <label for="destino_id" class="form-label">Destinos</label>
+              <select 
+                class="form-select" 
+                id="destino_id" 
+                name="destino_id" 
+                formControlName="destino_id"
+                required>
+                <option *ngFor="let destini of destinos" [value]="destini.destino_id + ' destino ' + destini.costo">{{ destini.nombre }} </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="numero_personas">numero_personas</label>
+          <input formControlName="numero_personas" type="number" class="form-control" id="numero_personas" placeholder="Ingrese los numero_personas" />
+          <div *ngIf="frm_Reserva.get('numero_personas').invalid && frm_Reserva.get('numero_personas').touched">
+            <small *ngIf="frm_Reserva.get('numero_personas').hasError('required')" style="color: red">Los nombres son requeridos</small>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="costo_final">costo_final</label>
+          <input formControlName="costo_final" type="text" class="form-control" id="costo_final" placeholder="Ingrese los costo_final" readonly/>
+          <div *ngIf="frm_Reserva.get('costo_final').invalid && frm_Reserva.get('costo_final').touched">
+            <small *ngIf="frm_Reserva.get('costo_final').hasError('required')" style="color: red">Los nombres son requeridos</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="fecha_reserva" class="form-label">Fecha Fin</label>
+          <div class="input-group">
+            <input 
+              type="date" 
+              class="form-control" 
+              id="fecha_reserva" 
+              name="fecha_reserva" 
+              required 
+              formControlName="fecha_reserva">
+          </div>
+        </div>
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary" [disabled]="frm_Reserva.invalid">Grabar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--
+  IMPORTAR => FORMSMODULE  APP.MODULE.TS ||  NUEVOPROVEEDOR.COMPONENT.TS
+  
+  
+  
+  
+  
+  INTRPOLACION => DESDE EL TS AL HTML
+  {{ }} 
+  EVENTOS => EJECUTAR FUNCIONES EN EL TS
+  ()
+  DATA BINDING => DESDE EL HTML AL TS
+  []
+  TWO WAY BIDING => ENVIADO DE DATOS DESDE EL HTML AL TS Y DESDE EL TS AL HTML
+  [()]
+  -->

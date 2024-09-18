@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Lista de Proveedores" blockClass="pc-component">
+      <div class="col-md-12 ">
+        <button type="button" class="btn btn-outline-success mb-4" [routerLink]="['/nuevareserva']">
+          Nueva Reserva
+        </button>
+        <div class="card tbl-card">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Fecha de Reserva</th>
+                  <th>Numero Personas</th>
+                  <th>Turista</th>
+                  <th>Destino</th>
+                  <th>Costo Final</th>
+
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (reserva of listareservas; track $index) {
+                  <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ reserva.fecha_reserva }}</td>
+                    <td>{{ reserva.numero_personas }}</td>
+                    <td>{{ reserva.turista_nombre }}</td>
+                    <td>{{ reserva.destino_nombre }}</td>
+                    <td>{{ reserva.costo_final }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-success m-r-5" [routerLink]="['/editarreserva/', reserva.reserva_id]">
+                        Editar
+                      </button>
+                      <button (click)="eliminar(reserva.reserva_id)" type="button" class="btn btn-outline-danger m-r-5">Eliminar</button>
+                      <button (click)="abrirReporte(reserva.reserva_id)" type="button" class="btn btn-outline-dark">Reporte</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<!--
+  LOS COMPONENTES (.TS) ESTAN OBLIGADOS A IMPORTAR LA REFERENCIA PARA QUE SE PUEDA USAR EN EL HTML
+  -->
